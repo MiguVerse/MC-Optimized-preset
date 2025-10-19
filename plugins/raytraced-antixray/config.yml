@@ -1,0 +1,27 @@
+# This is the global configuration for AntiXray.
+# You can configure the global settings here.
+# The version of the configuration.
+# Do not change this value.
+configVersion: 1
+# How many threads should be allocated for raytracing.
+# More threads = more players raytrace support, but more CPU usage.
+# This setting will be shared across the core and other addons.
+
+# WARN: this setting requires a server restart to take effect.
+threads: 8
+# Should support third person view for the raytracing?
+
+# NOTE: This option will affect every addons, not only the main plugin.
+supportThirdPerson: true
+# The max zoom distance to simulate for third person view.
+
+# NOTE: This option will affect every addons, not only the main plugin.
+thirdPersonMaxZoom: 4.2
+# The message to be sent when a player doesn't have permission to execute the command.
+noPermissionMessage: "&cYou don't have permission to do this."
+# Should use optimized block lookup?
+# This is purely for performance debugging.
+# Don't change this unless you know what you're doing.
+
+# NOTE: this will only take effect after a server restart.
+useOptimizedBlockLookup: true
