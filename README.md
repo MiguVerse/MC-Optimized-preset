@@ -105,7 +105,11 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 - **simulation-distance**: `10` → `8`
   - Reduces entity simulation load while maintaining good gameplay feel
 - **sync-chunk-writes**: `true` → `false`
+
   - Asynchronous chunk writes for better performance
+
+- **spawn-protection**: `16` → `0`
+  - Disabled spawn protection (There is really someone who wants it?? .\_.)
 
 ### Bukkit Configuration
 
