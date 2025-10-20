@@ -61,7 +61,7 @@ chunks:
     snowball: 8
   fixed-chunk-inhabited-time: -1
   flush-regions-on-save: false
-  max-auto-save-chunks-per-tick: 8
+  max-auto-save-chunks-per-tick: 24
   prevent-moving-into-unloaded-chunks: true
 collisions:
   allow-player-cramming-damage: false
@@ -155,29 +155,29 @@ entities:
     despawn-range-shape: ELLIPSOID
     despawn-ranges:
       ambient:
-        hard: default
-        soft: default
+        hard: 128
+        soft: 32
       axolotls:
-        hard: default
-        soft: default
+        hard: 128
+        soft: 32
       creature:
-        hard: default
-        soft: default
+        hard: 128
+        soft: 32
       misc:
-        hard: default
-        soft: default
+        hard: 128
+        soft: 32
       monster:
-        hard: default
-        soft: default
+        hard: 96
+        soft: 24
       underground_water_creature:
-        hard: default
-        soft: default
+        hard: 128
+        soft: 32
       water_ambient:
-        hard: default
-        soft: default
+        hard: 64
+        soft: 32
       water_creature:
-        hard: default
-        soft: default
+        hard: 128
+        soft: 32
     despawn-time:
       llama_spit: disabled
       snowball: disabled
@@ -205,13 +205,13 @@ entities:
         maximum: 70.0
         minimum: 50.0
     spawn-limits:
-      ambient: -1
-      axolotls: -1
-      creature: -1
-      monster: -1
-      underground_water_creature: -1
-      water_ambient: -1
-      water_creature: -1
+      ambient: 15
+      axolotls: 5
+      creature: 10
+      monster: 70
+      underground_water_creature: 5
+      water_ambient: 20
+      water_creature: 5
     spawning-throttle:
       failed-attempts-threshold: disabled
       throttled-ticks-per-spawn:
@@ -223,13 +223,13 @@ entities:
         water_ambient: -1
         water_creature: -1
     ticks-per-spawn:
-      ambient: -1
-      axolotls: -1
-      creature: -1
-      monster: -1
-      underground_water_creature: -1
-      water_ambient: -1
-      water_creature: -1
+      ambient: 2
+      axolotls: 2
+      creature: 2
+      monster: 1
+      underground_water_creature: 2
+      water_ambient: 2
+      water_creature: 2
     wandering-trader:
       spawn-chance-failure-increment: 25
       spawn-chance-max: 75

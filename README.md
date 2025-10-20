@@ -184,9 +184,9 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 
 - **chunk-loading-basic**:
 
-  - player-max-chunk-generate-rate: `-1.0` → `8.0`
-  - player-max-chunk-load-rate: `100.0` → `150.0`
-  - player-max-chunk-send-rate: `75.0` → `150.0`
+  - player-max-chunk-generate-rate: `-1.0` → `10.0`
+  - player-max-chunk-load-rate: `100.0` → `200.0`
+  - player-max-chunk-send-rate: `75.0` → `200.0`
 
 - **chunk-system**:
 
@@ -194,10 +194,15 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
   - worker-threads: `-1` → `12`
 
 - **misc**:
+
   - chat-executor-core-size: `-1` → `8`
   - chat-executor-max-size: `-1` → `16`
   - compression-level: `default` → `6`
+  - max-joins-per-tick: `5` → `3`
   - region-file-cache-size: `256` → `512`
+
+- **packet-limiter**:
+  - max-packet-rate: `500.0` → `300.0`
 
 ### Paper World Defaults
 
@@ -206,7 +211,6 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 - **chunks**:
 
   - delay-chunk-unloads-by: `10s` → `15s`
-  - max-auto-save-chunks-per-tick: `24` → `8`
   - prevent-moving-into-unloaded-chunks: `false` → `true`
   - entity-per-chunk-save-limit: Limited individual entity types
 
@@ -218,6 +222,9 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 
 - **spawning**:
 
+  - spawn-limits: Set to finite values (ambient: `∞` → `15`, axolotls: `∞` → `5`, creature: `∞` → `10`, monster: `∞` → `70`, underground_water_creature: `∞` → `5`, water_ambient: `∞` → `20`, water_creature: `∞` → `5`)
+  - ticks-per-spawn: Set to controlled rates (ambient: `∞` → `2`, creature: `∞` → `2`, monster: `∞` → `1`, underground_water_creature: `∞` → `1`, water_ambient: `∞` → `1`, water_creature: `∞` → `1`)
+  - despawn-ranges: Optimized (monster hard: `128` → `96`, monster soft: `32` → `24`)
   - alt-item-despawn-rate: `false` → `true`
     - Specific items despawn faster (cobblestone, netherrack, dirt, sand, etc.)
   - creative-arrow-despawn-rate: `default` → `60` ticks
@@ -248,6 +255,7 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 
 - **async improvements** (enabled for high-performance):
 
+  - parallel-world-ticking: `false` → `true` (experimental, 8 threads)
   - async-entity-tracker: `false` → `true` (8 max threads)
   - async-target-finding: `false` → `true`
   - async-playerdata-save: `false` → `true`
@@ -269,10 +277,13 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
   - faster-random-generator: `false` → `true` (Xoroshiro128PlusPlus)
   - use-direct-implementation: `false` → `true`
   - cache-eye-fluid-status: `false` → `true`
+  - check-survival-before-growth: `false` → `true` (cactus)
 
 - **network optimizations**:
   - OptimizeNonFlushPacketSending: `false` → `true`
   - async-switch-state: `false` → `true`
+  - cache-profile-lookup: `false` → `true`
+  - secure-seed: `false` → `true`
 
 ### Purpur Configuration
 

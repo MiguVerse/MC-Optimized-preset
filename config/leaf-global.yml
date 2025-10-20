@@ -10,7 +10,7 @@ async:
   # **Experimental feature**
   # Enables parallel world ticking to improve performance on multi-core systems.
   parallel-world-ticking:
-    enabled: false
+    enabled: true
     threads: 8
     log-container-creation-stacktraces: false
     disable-hard-throw: false
@@ -182,7 +182,7 @@ performance:
   count-all-chunks-for-ticking: false
   check-survival-before-growth:
     # Check if a cactus can survive before growing.
-    cactus-check-survival: false
+    cactus-check-survival: true
 
 ###########
 #  FIXES  #
@@ -329,7 +329,7 @@ misc:
   # Once you enable secure seed, all ores and structures are generated with 1024-bit seed
   # instead of using 64-bit seed in vanilla, made seed cracker become impossible.
   secure-seed:
-    enabled: false
+    enabled: true
   # Remove Vanilla username check,
   # allowing all characters as username.
   remove-vanilla-username-check: false
@@ -373,7 +373,7 @@ misc:
   cache:
     profile-lookup:
       # Cache profile data lookups (skins, textures, etc.) to reduce API calls to Mojang.
-      enabled: false
+      enabled: true
       # The timeout for profile lookup cache. Unit: Minutes.
       timeout: 1440
       # Maximum number of profiles to cache. Higher values use more memory (not that much).

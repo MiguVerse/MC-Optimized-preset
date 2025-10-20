@@ -38,9 +38,9 @@ chunk-loading-advanced:
   player-max-concurrent-chunk-generates: 8
   player-max-concurrent-chunk-loads: 8
 chunk-loading-basic:
-  player-max-chunk-generate-rate: 8.0
-  player-max-chunk-load-rate: 150.0
-  player-max-chunk-send-rate: 150.0
+  player-max-chunk-generate-rate: 10.0
+  player-max-chunk-load-rate: 200.0
+  player-max-chunk-send-rate: 200.0
 chunk-system:
   gen-parallelism: default
   io-threads: 8
@@ -86,7 +86,7 @@ misc:
   compression-level: 6
   fix-entity-position-desync: true
   load-permissions-yml-before-plugins: true
-  max-joins-per-tick: 5
+  max-joins-per-tick: 3
   region-file-cache-size: 512
   strict-advancement-dimension-check: false
   use-alternative-luck-formula: false
@@ -95,7 +95,7 @@ packet-limiter:
   all-packets:
     action: KICK
     interval: 7.0
-    max-packet-rate: 500.0
+    max-packet-rate: 300.0
   kick-message: <red><lang:disconnect.exceeded_packet_rate>
   overrides:
     ServerboundPlaceRecipePacket:
