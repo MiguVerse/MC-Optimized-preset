@@ -1,0 +1,190 @@
+# This is the default overworld configuration for AntiXray.
+# You can configure the settings here.
+#
+# The world filters to be used by the anti-xray.
+# When any of the world filters match, the configuration will be used.
+# Check documentation for syntaxes: https://docs.imanity.dev/antixray/configurations#world-filter
+worldFilters:
+  - environment:normal
+  - environment:custom
+# The type of the config.
+# Config system will first search for the config with CUSTOM type.
+# If not found, it will search for the config with DEFAULT type.
+type: DEFAULT
+# Should anti-xray be enabled?
+enabled: true
+# The minimum block height to execute anti xray.
+minBlockHeight: -64
+# The maximum block height to execute anti xray.
+maxBlockHeight: 64
+# Maximum chunk load per tick.
+maxChunkLoadPerTick: 20
+# The maximum raytrace distance.
+maxRaytraceDistance: 64.0
+# The block update radius when world interaction happens.
+# The higher update radius, the more performance impact.
+# Anything over 2 is not ideal.
+updateRadius: 2
+# The maximum block update per tick
+# you can lower the value to reduce the performance impact, but it will make it less responsive.
+# You can raise the value to make it more responsive, but it will make it more resource-intensive.
+maxBlockUpdatesPerTick: 100
+# The delay to start raytracing after the player joins the server / teleport / world change.
+raytraceDelay: 10
+# The trusted block range when player joins the server / teleport / world change.
+# Trust range is basically any block within the range will not be checked for raytracing.
+# This is useful to make sure whenever teleported, the nearby blocks will seems normal.
+trustedRange: 5
+# The amount of threads to be used to execute the obfuscation.
+obfuscateThreads: 2
+# The raytrace ticking rate for each player. (in ticks, 1 ticks = 50ms)
+raytraceRate: 1
+# Should the newly placed block in loaded chunks be raytraced?
+# The term 'loaded chunk' means the chunk that is loaded by the player's client.
+# Not the server's chunk loading.
+# This feature is useful to prevent the player from using x-ray by another player's block placement.
+# However, this feature will be a bit more resource-intensive.
+tracePlacedBlock: false
+# Should the block group be enabled?
+# The block group is a feature that will group the blocks that are connected to each other.
+# And raytrace the group instead of the individual block.
+blockGrouping: false
+# Should stop raytracing the block when the player reveals it?
+revealStopRaytracing: true
+# Should the block check be aggressive?
+# If enabled, the block will be checked every time the block is attempting an update.
+# This feature is useful
+aggressiveCheckBlock: false
+# The blocks to be obfuscated.
+# For regular minecraft blocks, you can use the XMaterial enum.
+# Which is listed here: https://github.com/CryptoMorin/XSeries/blob/master/src/main/java/com/cryptomorin/xseries/XMaterial.java#L68
+# If your server is modded and the material is not in the XMaterial, you can use the bukkit material name instead.
+# For modern versions (1.13+), you can use the block registry name for more detailed specification & modded block info that isn't in XMaterial dictionary,
+# Example: 'minecraft:stone_stairs[waterlogged=true]'.
+
+# For ItemsAdder custom blocks, you can use the format 'ia:custom_block_registry_name'.
+# For Oraxen custom blocks, you can use the format 'oraxen:custom_item_registry_name'.
+# For Nexo custom blocks, you can use the format 'nexo:custom_item_registry_name'.
+obfuscateBlocks:
+  - DIAMOND_ORE
+  - EMERALD_ORE
+  - GOLD_ORE
+  - IRON_ORE
+  - LAPIS_ORE
+  - REDSTONE_ORE
+  - COAL_ORE
+  - COPPER_ORE
+  - DEEPSLATE_COAL_ORE
+  - DEEPSLATE_COPPER_ORE
+  - DEEPSLATE_DIAMOND_ORE
+  - DEEPSLATE_EMERALD_ORE
+  - DEEPSLATE_GOLD_ORE
+  - DEEPSLATE_IRON_ORE
+  - DEEPSLATE_LAPIS_ORE
+  - DEEPSLATE_REDSTONE_ORE
+# The material to replace the obfuscated blocks.
+replacementBlocks:
+  0: STONE
+  -64: DEEPSLATE
+# The fake structures to be generated within the world,
+# It contains several features such as fake ores,
+# The goal is to mislead the cheaters.
+fakeConfig:
+  # The fake ores to be generated within the world.
+  ores:
+    - block: COAL_ORE
+      replace: STONE
+      veinCount: 10
+      veinSize: 16
+      minHeight: 0
+      maxHeight: 128
+    - block: IRON_ORE
+      replace: STONE
+      veinCount: 10
+      veinSize: 8
+      minHeight: 0
+      maxHeight: 64
+    - block: GOLD_ORE
+      replace: STONE
+      veinCount: 2
+      veinSize: 8
+      minHeight: 0
+      maxHeight: 32
+    - block: REDSTONE_ORE
+      replace: STONE
+      veinCount: 8
+      veinSize: 7
+      minHeight: 0
+      maxHeight: 16
+    - block: LAPIS_ORE
+      replace: STONE
+      veinCount: 1
+      veinSize: 6
+      minHeight: 0
+      maxHeight: 32
+    - block: DIAMOND_ORE
+      replace: STONE
+      veinCount: 1
+      veinSize: 7
+      minHeight: 0
+      maxHeight: 16
+    - block: EMERALD_ORE
+      replace: STONE
+      veinCount: 1
+      veinSize: 1
+      minHeight: 0
+      maxHeight: 32
+    - block: COPPER_ORE
+      replace: STONE
+      veinCount: 20
+      veinSize: 8
+      minHeight: 0
+      maxHeight: 64
+    - block: DEEPSLATE_COAL_ORE
+      replace: DEEPSLATE
+      veinCount: 5
+      veinSize: 16
+      minHeight: -64
+      maxHeight: 0
+    - block: DEEPSLATE_IRON_ORE
+      replace: DEEPSLATE
+      veinCount: 5
+      veinSize: 8
+      minHeight: -64
+      maxHeight: 0
+    - block: DEEPSLATE_GOLD_ORE
+      replace: DEEPSLATE
+      veinCount: 2
+      veinSize: 8
+      minHeight: -64
+      maxHeight: 0
+    - block: DEEPSLATE_REDSTONE_ORE
+      replace: DEEPSLATE
+      veinCount: 4
+      veinSize: 7
+      minHeight: -64
+      maxHeight: 0
+    - block: DEEPSLATE_LAPIS_ORE
+      replace: DEEPSLATE
+      veinCount: 1
+      veinSize: 6
+      minHeight: -64
+      maxHeight: 0
+    - block: DEEPSLATE_DIAMOND_ORE
+      replace: DEEPSLATE
+      veinCount: 1
+      veinSize: 7
+      minHeight: -64
+      maxHeight: 0
+    - block: DEEPSLATE_EMERALD_ORE
+      replace: DEEPSLATE
+      veinCount: 1
+      veinSize: 1
+      minHeight: -64
+      maxHeight: 0
+    - block: DEEPSLATE_COPPER_ORE
+      replace: DEEPSLATE
+      veinCount: 20
+      veinSize: 8
+      minHeight: -64
+      maxHeight: 0

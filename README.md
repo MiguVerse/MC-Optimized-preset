@@ -292,56 +292,78 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 - **squid immune-to-EAR**: `true` → `false`
   - Allows squids to properly be affected by entity activation range
 
-### Plugin Configuration
+### Plugin Configuration - RayTracedAntiXray
 
-#### `plugins/raytraced-antixray/config.yml`
+#### Global Configuration (`config.yml`)
 
-- **threads**: `4` → `8`
-  - Better antixray raytracing performance using available CPU cores
-  - Supports more concurrent players with active antixray
+| Setting   | Default | Optimized | Reason                                                                  |
+| --------- | ------- | --------- | ----------------------------------------------------------------------- |
+| `threads` | 4       | 8         | Better multi-core utilization (Ryzen 9 5950X) - Change depending on CPU |
+
+#### Overworld Configuration (`default-overworld.yml`)
+
+| Setting                | Default   | Optimized      | Impact                                      |
+| ---------------------- | --------- | -------------- | ------------------------------------------- |
+| `tracePlacedBlock`     | true      | **false**      | 🔥 **More CPU efficient**                   |
+| `revealStopRaytracing` | false     | **true**       | 🔥 **CPU savings & better user-experience** |
+| `fakeConfig.ores`      | 0 configs | **16 configs** | 🔥 **Fake ore generation**                  |
+
+#### Nether Configuration (`default-nether.yml`)
+
+| Setting                | Default   | Optimized     | Impact                                      |
+| ---------------------- | --------- | ------------- | ------------------------------------------- |
+| `tracePlacedBlock`     | true      | **false**     | 🔥 **More CPU efficient**                   |
+| `revealStopRaytracing` | false     | **true**      | 🔥 **CPU savings & better user-experience** |
+| `fakeConfig.ores`      | 0 configs | **3 configs** | 🔥 **Fake ore generation**                  |
+
+#### Entity Culling Configuration (`entity-culling/default.yml`)
+
+| Setting        | Default  | Optimized     | Impact                             |
+| -------------- | -------- | ------------- | ---------------------------------- |
+| `entityTypes`  | 13 types | **48+ types** | 🔥 **Comprehensive ESP blocking**  |
+| `rotatingRate` | 3        | **1**         | 🔥 **Instant updates on rotation** |
+
+#### Performance Impact Summary
+
+| Optimization                 | Description                                            |
+| ---------------------------- | ------------------------------------------------------ |
+| `revealStopRaytracing: true` | Stops raytracing legitimately revealed ores            |
+| `tracePlacedBlock: false`    | Disables intensive block placement tracking            |
+| `rotatingRate: 1`            | More efficient but responsive culling                  |
+| `threads: 8`                 | Better load distribution (no savings, better capacity) |
+| **Total Estimated**          | Combined CPU reduction vs defaults                     |
+
+#### Anti-Cheat Coverage Comparison
+
+| Protection Type       | Default                | Optimized                  | Effectiveness |
+| --------------------- | ---------------------- | -------------------------- | ------------- |
+| Ore X-Ray (Overworld) | ✅ Basic               | ✅ **+ 16 Fake Ores**      | ⭐⭐⭐⭐⭐    |
+| Ore X-Ray (Nether)    | ✅ Basic               | ✅ **+ 3 Fake Ores**       | ⭐⭐⭐⭐⭐    |
+| Player ESP            | ✅ Basic (13 entities) | ✅ **48+ Entities**        | ⭐⭐⭐⭐⭐    |
+| Mob ESP               | ✅ Limited             | ✅ **All Mobs + Variants** | ⭐⭐⭐⭐⭐    |
+| Chest ESP             | ✅ 44 types            | ✅ **43 Vanilla Types**    | ⭐⭐⭐⭐⭐    |
 
 ---
 
 ## Recommended Plugins with Pre-Made Configs
 
-### AntiXray Solution
+### AntiXray & ESP Prevention Suite
 
 - **[RayTracedAntiXray](https://builtbybit.com/resources/raytraceantixray-ores-entities-tiles.41896/)** - Ray-traced ore protection (8 threads allocated)
   - Addon: `raytraced-entity-culling` - Hides hidden entities
   - Addon: `raytraced-tile-culling` - Hides hidden tile entities
-  - **Configuration Included**: ✅ `plugins/raytraced-antixray/config.yml`
+  - **Configuration Included**: ✅ `plugins/raytraced-antixray/` and `plugins/raytraced-entity-culling/`
 
 ### Performance Monitoring
 
 - **[Spark](https://spark.lucko.me/)** - Server profiler and performance analyzer
-  - **Configuration Included**: ✅ `plugins/spark/config.json`
-
-### Library Dependencies
-
-- **[Fairy-lib-plugin](https://builtbybit.com/resources/fairy-lib-plugin.50615/)** - Shared library for plugins
-  - **Configuration Included**: ✅ `plugins/fairy-lib-plugin/`
-  - **Used by**: RayTracedAntiXray and addons
+  - **Configuration Included**: ❌ (default config is sufficient)
 
 ---
 
 ## Performance Tuning Guide
 
-### For Different Playstyles
-
-**PvP/Combat-Heavy Server**:
-
-- Keep aggressive mob-spawn limits (current config is good)
-- Enable strict knockback settings if needed
-
-**Creative/Building Server**:
-
-- Can increase spawn limits slightly
-- Reduce entity-activation-range further
-
-**Survival/Vanilla Experience**:
-
-- Current configuration is optimal
-- Balanced between performance and gameplay feel
+Depends on your server hardware, player count and use case. Adjust settings as needed.
 
 ### Monitoring Performance
 
@@ -365,18 +387,14 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 
 ### 📊 Expected Performance
 
-- **Single Player**: 20 TPS consistently
-- **10-20 Players**: 19.5-20 TPS (minimal lag)
-- **20-50 Players**: 18-20 TPS depending on activity
-- **50+ Players**: Requires additional tuning based on activity
+Varies based on player count, activity, and environment.
 
 ### 🔧 Further Optimization Tips
 
 1. Use SSD for world storage
-2. Enable `async-chunk-send` (already enabled)
-3. Limit view-distance to 8-10 per player
-4. Use Spark to identify lag sources
-5. Consider async-safe plugins only
+2. Limit view-distance to 8-10 per player
+3. Use Spark to identify lag sources
+4. Consider async-safe plugins only
 
 ### 🐛 Troubleshooting
 
@@ -405,7 +423,7 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 - **LeafMC**: Latest stable (1.21.4+)
 - **Paper Version**: Latest compatible
 - **Purpur Version**: Latest compatible
-- **Configuration Date**: October 19, 2025
+- **Configuration Date**: October 20, 2025
 
 ---
 
@@ -420,5 +438,5 @@ Optimizations based on:
 
 ---
 
-**Last Updated**: October 19, 2025
+**Last Updated**: October 20, 2025
 **Optimized and Tested For**: Ryzen 9 5950X / 10GB RAM / LeafMC 1.21.4+
