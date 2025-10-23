@@ -203,7 +203,6 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 
 - **async improvements** (enabled for high-performance):
 
-  - parallel-world-ticking: `false` → `true` (experimental, 8 threads)
   - async-entity-tracker: `false` → `true` (8 max threads)
   - async-target-finding: `false` → `true`
   - async-playerdata-save: `false` → `true`
