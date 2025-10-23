@@ -31,6 +31,7 @@ This is a fully optimized Minecraft server configuration template for **LeafMC**
 - Includes error checking (verifies jar file exists before starting)
 - Displays startup information with color-coded errors
 - Keeps terminal open on crash for debugging
+- Includes **DLeaf.enableFMA** for LeafMC math optimizations, improving performance on compatible CPUs (If your CPU doesn't support it, worse performance may occur but to be real, who uses CPUs that don't support FMA in 2025?)
 
 **Usage**:
 
@@ -54,6 +55,7 @@ start.bat custom-server.jar
 - Includes error checking (verifies jar file exists before starting)
 - Proper POSIX shell script with safety flags (`set -euo pipefail`)
 - Works from any directory (changes to script directory automatically)
+- Includes **DLeaf.enableFMA** for LeafMC math optimizations, improving performance on compatible CPUs (If your CPU doesn't support it, worse performance may occur but to be real, who uses CPUs that don't support FMA in 2025?)
 
 **Usage**:
 

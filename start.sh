@@ -43,6 +43,7 @@ JVM_FLAGS=(
   "-XX:MaxTenuringThreshold=1"
   "-Dusing.aikars.flags=https://mcflags.emc.gs"
   "-Daikars.new.flags=true"
+  "-DLeaf.enableFMA=true"
 )
 
 # Default server jar (keep in sync with start.bat)

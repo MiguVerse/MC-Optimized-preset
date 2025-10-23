@@ -69,6 +69,7 @@ java ^
   -XX:MaxTenuringThreshold=1 ^
   -Dusing.aikars.flags=https://mcflags.emc.gs ^
   -Daikars.new.flags=true ^
+  -DLeaf.enableFMA=true ^
   -jar !SERVER_JAR! nogui
 
 REM Keep the window open if the server crashes
