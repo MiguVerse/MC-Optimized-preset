@@ -303,6 +303,12 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 | Mob ESP               | ✅ Limited             | ✅ **All Mobs + Variants** | ⭐⭐⭐⭐⭐    |
 | Chest ESP             | ✅ 44 types            | ✅ **43 Vanilla Types**    | ⭐⭐⭐⭐⭐    |
 
+### Plugin Configuration - Lightning GrimAC & Vulcan
+
+For compatibility with both anticheats we set "disable-pong-cancelling" to true in GrimAC config, as Vulcan relies on pong responses for some of its checks.
+
+If you aren't using Vulcan, consider disabling this option for slightly better detection accuracy.
+
 ---
 
 ## Recommended Plugins with Pre-Made Configs
