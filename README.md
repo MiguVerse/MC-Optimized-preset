@@ -1,16 +1,16 @@
 # Optimized MiguVerse's Server Default Configuration
 
-This is a fully optimized Minecraft server configuration template for **LeafMC** tested on a **Ryzen 9 5950X (16-core/32-thread)** with **10GB RAM allocation**. Can be used as a base for various server types including Survival, Creative, Mini-games, and more, also it can be adapted for any other CPU, by default it is optimized for all CPUs and minor adjustments may be needed for lower core count CPUs.
+This is a fully optimized Minecraft server configuration template for **LeafMC** with **10GB RAM allocation**. Designed to work efficiently on any modern multi-core processor. Can be used as a base for various server types including Survival, Creative, Mini-games, and more.
 
 ## Server Software
 
 - **[LeafMC](https://www.leafmc.one/)** - High-performance fork of Paper with advanced optimization features
 - Based on: Paper MC, Purpur, and Gale optimizations
 
-## Hardware Specifications
+## Recommended Specifications
 
-- **CPU**: AMD Ryzen 9 5950X (16 cores / 32 threads)
-- **RAM**: 10GB allocated to server
+- **CPU**: Any modern multi-core processor (4+ cores recommended)
+- **RAM**: 10GB allocated to server (adjustable based on player count)
 - **Java**: JDK 21 (recommended for Virtual Thread support)
 
 ---
@@ -98,84 +98,45 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 
 #### `server.properties`
 
-- **network-compression-threshold**: `256` → `512`
-  - Reduces network overhead for more efficient bandwidth usage
-- **region-file-compression**: `deflate` → `lz4`
-  - Faster region file compression (better for high-activity servers)
-- **simulation-distance**: `10` → `8`
-  - Reduces entity simulation load while maintaining good gameplay feel
-- **sync-chunk-writes**: `true` → `false`
-
-  - Asynchronous chunk writes for better performance
-
-- **spawn-protection**: `16` → `0`
-  - Disabled spawn protection (There is really someone who wants it?? .\_.)
+- **allow-flight**: `false` → `true` (prevents false kicks on horses/scaffolding)
+- **network-compression-threshold**: `256` (optimal default)
+- **simulation-distance**: `10` → `8` (reduces entity load)
+- **view-distance**: `10` (balanced terrain view)
 
 ### Bukkit Configuration
 
 #### `bukkit.yml`
 
-- **spawn-limits** - Reduced for better performance balance:
+- **spawn-limits** - Balanced for performance:
 
-  - monsters: `70` → `50`
-  - animals: `10` → `8`
-  - water-animals: `5` → `3`
-  - water-ambient: `20` → `10`
-  - axolotls: `5` → `3`
-  - ambient: `15` → `8`
+  - monsters: `50` (reduced from 70)
+  - animals: `8` (reduced from 10)
+  - water-animals: `3` (reduced from 5)
+  - water-ambient: `10` (reduced from 20)
+  - axolotls: `3` (reduced from 5)
+  - ambient: `8` (reduced from 15)
 
-- **chunk-gc period**: `600` → `400` ticks
-
-  - More aggressive garbage collection for memory management
-
-- **spawn tick rates** - Reduced for better optimization:
-  - water-spawns: `1` → `400` ticks
-  - water-ambient-spawns: `1` → `400` ticks
-  - water-underground-creature-spawns: `1` → `400` ticks
-  - axolotl-spawns: `1` → `400` ticks
-  - ambient-spawns: `1` → `400` ticks
-  - autosave: `6000` → `12000` ticks (20-minute intervals)
+- **ticks-per**:
+  - monster-spawns: `10` (balanced spawn rate)
+  - autosave: `6000` (5-minute intervals)
 
 ### Spigot Configuration
 
 #### `spigot.yml`
 
-- **netty-threads**: `4` → `8`
+- **mob-spawn-range**: `6` (optimized from vanilla 8)
 
-  - Better network handling for modern CPUs
+- **entity-activation-range** - Vanilla parity maintained:
 
-- **mob-spawn-range**: `8` → `6`
+  - animals: `32` (increased from default 16)
+  - monsters: `32` (increased from default 24)
+  - villagers: `32` (balanced performance)
+  - misc: `16` (default)
+  - water: `16` (default)
 
-  - Reduces mob spawning load
-
-- **entity-activation-range** - Optimized distances:
-
-  - animals: `32` → `16`
-  - monsters: `32` → `24`
-  - raiders: `64` → `48`
-  - misc: `16` → `8`
-  - water: `16` → `8`
-  - villagers: `32` → `16`
-  - flying-monsters: `32` → `24`
-
-- **wake-up-inactive** - Reduced entity processing:
-
-  - animals-max-per-tick: `4` → `2`
-  - monsters-max-per-tick: `8` → `4`
-  - villagers-max-per-tick: `4` → `2`
-  - flying-monsters-max-per-tick: `8` → `4`
-
-- **tick-inactive-villagers**: `true` → `false`
-
-  - Disabled ticking for inactive villagers (major performance gain)
-
-- **merge-radius** - Increased item/exp merging:
-
-  - exp: `-1.0` → `4.0`
-  - item: `0.5` → `3.5`
-
-- **hopper-check**: `1` → `8`
-  - Reduced hopper checking frequency for better performance
+- **merge-radius**:
+  - exp: `4.0` (vanilla merging enabled)
+  - item: `3.5` (vanilla merging enabled)
 
 ### Paper Global Configuration
 
@@ -214,44 +175,25 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 
 - **chunks**:
 
-  - delay-chunk-unloads-by: `10s` → `15s`
-  - prevent-moving-into-unloaded-chunks: `false` → `true`
-  - entity-per-chunk-save-limit: Limited individual entity types
+  - delay-chunk-unloads-by: `10s` (default balanced)
 
 - **entities**:
 
-  - armor-stands do-collision-entity-lookups: `true` → `false`
-  - experience-merge-max-value: `-1` → `25`
-  - only-merge-items-horizontally: `false` → `true`
+  - experience-merge-max-value: `-1` (vanilla XP merging preserved)
+  - only-merge-items-horizontally: `false` (vanilla behavior)
 
 - **spawning**:
 
-  - spawn-limits: Set to finite values (ambient: `∞` → `15`, axolotls: `∞` → `5`, creature: `∞` → `10`, monster: `∞` → `70`, underground_water_creature: `∞` → `5`, water_ambient: `∞` → `20`, water_creature: `∞` → `5`)
-  - ticks-per-spawn: Set to controlled rates (ambient: `∞` → `2`, creature: `∞` → `2`, monster: `∞` → `1`, underground_water_creature: `∞` → `1`, water_ambient: `∞` → `1`, water_creature: `∞` → `1`)
-  - despawn-ranges: Optimized (monster hard: `128` → `96`, monster soft: `32` → `24`)
-  - alt-item-despawn-rate: `false` → `true`
-    - Specific items despawn faster (cobblestone, netherrack, dirt, sand, etc.)
-  - creative-arrow-despawn-rate: `default` → `60` ticks
-  - non-player-arrow-despawn-rate: `default` → `60` ticks
+  - alt-item-despawn-rate: `enabled` with expanded item list:
+    - cobblestone, netherrack, sand, dirt, grass, leaves, bamboo, kelp, sugar_cane, etc. (300 ticks)
+    - scaffolding (600 ticks)
 
 - **environment**:
 
-  - optimize-explosions: `false` → `true`
+  - treasure-maps.villager-trade: `true` (prevents lag from treasure map searches)
 
-- **hopper**:
-
-  - ignore-occluding-blocks: `false` → `true`
-
-- **misc**:
-
-  - redstone-implementation: `VANILLA` → `ALTERNATE_CURRENT`
-    - Much faster redstone processing
-
-- **tick-rates** - Reduced update frequencies:
-  - villager validatenearbypoi: `-1` → `60` ticks
-  - grass-spread: `1` → `4` ticks
-  - mob-spawner: `1` → `2` ticks
-  - villager secondarypoisensor: `40` → `80` ticks
+- **tick-rates**:
+  - All set to vanilla defaults (`-1` or `1`) for maximum compatibility
 
 ### Leaf Configuration
 
@@ -293,27 +235,29 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 
 #### `purpur.yml`
 
-- **lagging-threshold**: `19.0` → `17.5`
+- **lagging-threshold**: `19.0` (default)
 
-  - More aggressive lag detection
+- **villager lobotomize** (major performance optimization):
 
-- **villager lobotomize** (optimization):
+  - enabled: `true`
+  - check-interval: `100` ticks
+  - Reduces villager AI when stuck in 1x1 trading halls
 
-  - enabled: `false` → `true`
-  - check-interval: `100` → `60` ticks
-  - wait-until-trade-locked: `false` → `true`
-  - Significantly reduces villager AI processing when inactive
+- **villager search-radius**:
 
-- **squid immune-to-EAR**: `true` → `false`
-  - Allows squids to properly be affected by entity activation range
+  - acquire-poi: `16` (reduced from 48 - **HUGE performance gain**)
+  - nearest-bed-sensor: `16` (reduced from 48)
+
+- **zombie**:
+  - aggressive-towards-villager-when-lagging: `false` (prevents lag spikes)
 
 ### Plugin Configuration - RayTracedAntiXray
 
 #### Global Configuration (`config.yml`)
 
-| Setting   | Default | Optimized | Reason                                                                  |
-| --------- | ------- | --------- | ----------------------------------------------------------------------- |
-| `threads` | 4       | 8         | Better multi-core utilization (Ryzen 9 5950X) - Change depending on CPU |
+| Setting   | Default | Optimized | Reason                                                              |
+| --------- | ------- | --------- | ------------------------------------------------------------------- |
+| `threads` | 4       | 8         | Better multi-core utilization - Adjust based on your CPU core count |
 
 #### Overworld Configuration (`default-overworld.yml`)
 
@@ -368,6 +312,21 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
   - Addon: `raytraced-entity-culling` - Hides hidden entities
   - Addon: `raytraced-tile-culling` - Hides hidden tile entities
   - **Configuration Included**: ✅ `plugins/raytraced-antixray/` and `plugins/raytraced-entity-culling/`
+
+### AntiCheat Solutions
+
+- **[Lightning GrimAC](https://modrinth.com/plugin/lightning-grim-anticheat)** - Free, open-source anticheat (recommended)
+
+  - Modern prediction-based anticheat with excellent accuracy
+  - Works perfectly with default configuration
+  - Compatible with other anticheats for layered protection
+
+- **[Vulcan AntiCheat](https://vulcanac.net/)** - Premium anticheat (paid)
+  - Professional-grade cheat detection based on packet analysis
+  - Works alongside GrimAC for comprehensive protection
+  - Default config works well with this server configuration
+
+Both together provide robust cheat detection with minimal false positives, cause Lighting GrimAC handles prediction checks while Vulcan focuses on packet anomalies, but remember, the best anticheat is a well-informed community and vigilant staff, just add this anticheat layer in servers where cheating is a real concern.
 
 ### Performance Monitoring
 
@@ -453,5 +412,13 @@ Optimizations based on:
 
 ---
 
-**Last Updated**: October 20, 2025
-**Optimized and Tested For**: Ryzen 9 5950X / 10GB RAM / LeafMC 1.21.4+
+---
+
+## Key Configuration Philosophy
+
+✅ **Vanilla Parity Maintained** - No gameplay-breaking changes
+✅ **Performance Optimized** - Balanced for modern multi-core processors
+✅ **Professional Setup** - Based on paper-chan.moe, PurpurMC, and LeafMC official docs
+
+**Last Updated**: October 23, 2025
+**Optimized For**: Any modern CPU / 10GB RAM / LeafMC 1.21.4+

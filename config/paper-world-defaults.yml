@@ -51,7 +51,7 @@ anticheat:
     use-permission: false
 chunks:
   auto-save-interval: default
-  delay-chunk-unloads-by: 15s
+  delay-chunk-unloads-by: 10s
   entity-per-chunk-save-limit:
     arrow: 16
     ender_pearl: 8
@@ -96,12 +96,12 @@ entities:
       zombified_piglin:
         - HARD
     ender-dragons-death-always-places-dragon-egg: false
-    experience-merge-max-value: 25
+    experience-merge-max-value: -1
     mobs-can-always-pick-up-loot:
       skeletons: false
       zombies: false
     nerf-pigmen-from-nether-portals: false
-    only-merge-items-horizontally: true
+    only-merge-items-horizontally: false
     parrots-are-unaffected-by-player-movement: false
     phantoms-do-not-spawn-on-creative-players: true
     phantoms-only-attack-insomniacs: true
@@ -143,13 +143,27 @@ entities:
         red_sand: 300
         gravel: 300
         dirt: 300
-        grass_block: 300
+        short_grass: 300
         pumpkin: 300
-        melon: 300
+        melon_slice: 300
         kelp: 300
         bamboo: 300
-        stick: 300
-        snowball: 300
+        sugar_cane: 300
+        twisting_vines: 300
+        weeping_vines: 300
+        oak_leaves: 300
+        spruce_leaves: 300
+        birch_leaves: 300
+        jungle_leaves: 300
+        acacia_leaves: 300
+        dark_oak_leaves: 300
+        mangrove_leaves: 300
+        cherry_leaves: 300
+        cactus: 300
+        diorite: 300
+        granite: 300
+        andesite: 300
+        scaffolding: 600
     count-all-mobs-for-spawning: false
     creative-arrow-despawn-rate: 60
     despawn-range-shape: ELLIPSOID
@@ -270,7 +284,7 @@ environment:
     enabled: true
     find-already-discovered:
       loot-tables: default
-      villager-trade: false
+      villager-trade: true
   void-damage-amount: 4.0
   void-damage-min-build-height-offset: -64.0
   water-over-lava-flow-speed: 5
@@ -327,14 +341,14 @@ spawn:
 tick-rates:
   behavior:
     villager:
-      validatenearbypoi: 60
+      validatenearbypoi: -1
   container-update: 1
   dry-farmland: 1
-  grass-spread: 4
-  mob-spawner: 2
+  grass-spread: 1
+  mob-spawner: 1
   sensor:
     villager:
-      secondarypoisensor: 80
+      secondarypoisensor: 40
   wet-farmland: 1
 unsupported-settings:
   disable-world-ticking-when-empty: false

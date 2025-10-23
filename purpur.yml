@@ -43,7 +43,7 @@ settings:
       only-broadcast-to-affected-player: false
     death:
       only-broadcast-to-affected-player: false
-  lagging-threshold: 17.5
+  lagging-threshold: 19.0
   clamp-attributes: true
   entity:
     enderman:
@@ -450,15 +450,15 @@ world-settings:
         minimum-demand: 0
         lobotomize:
           enabled: true
-          check-interval: 60
-          wait-until-trade-locked: true
+          check-interval: 100
+          wait-until-trade-locked: false
         display-trade-item: true
         spawn-iron-golem:
           radius: 0
           limit: 0
         search-radius:
-          acquire-poi: 48
-          nearest-bed-sensor: 48
+          acquire-poi: 16
+          nearest-bed-sensor: 16
       polar_bear:
         ridable: false
         ridable-in-water: true
@@ -537,7 +537,7 @@ world-settings:
           only-babies: true
           chance: 0.05
           try-existing-chickens: true
-        aggressive-towards-villager-when-lagging: true
+        aggressive-towards-villager-when-lagging: false
         bypass-mob-griefing: false
         takes-damage-from-water: false
         always-drop-exp: false
