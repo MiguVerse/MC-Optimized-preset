@@ -101,6 +101,7 @@ If your jar has a different name (e.g., `leafmc-1.21.4.jar`), either:
 #### `server.properties`
 
 - **allow-flight**: `false` → `true` (prevents false kicks on horses/scaffolding)
+- **enforce-secure-profile**: `true` → `false` (required for FreedomChat and clients disabling chat signing)
 - **network-compression-threshold**: `256` (optimal default)
 - **simulation-distance**: `10` → `8` (reduces entity load)
 - **view-distance**: `10` (balanced terrain view)
@@ -334,6 +335,12 @@ If you aren't using Vulcan, consider disabling this option for slightly better d
   - Default config works well with this server configuration
 
 Both together provide robust cheat detection with minimal false positives, cause Lighting GrimAC handles prediction checks while Vulcan focuses on packet anomalies, but remember, the best anticheat is a well-informed community and vigilant staff, just add this anticheat layer in servers where cheating is a real concern.
+
+### FreedomChat (Chat signing compatibility)
+
+- **[FreedomChat](https://modrinth.com/plugin/freedomchat)** - disables chat signing server-side and improves compatibility with clients that disable chat signing
+  - Out of the box FreedomChat rewrites outgoing messages and disables server-side reporting, making chat unreportable (works for 1.19+)
+  - Tradeoffs: Disabling chat signing prevents client-side reports and reduces reporting-related moderation tools from microsoft, but improves privacy (and microsoft isnt who should be reading your chat messages anyway, its your server admins job to moderate chat, not some big corporation)
 
 ### Performance Monitoring
 
